@@ -54,7 +54,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String ticket = UUIDUtil.uuid();
         //将用户信息存入redis中
         redisTemplate.opsForValue().set("user:"+ticket, user);
-//        request.getSession().setAttribute(ticket, user);5666656t
+//        request.getSession().setAttribute(ticket, user);
         CookieUtil.setCookie(request, response, "userTicket", ticket);
         return RespBean.success(ticket);
     }

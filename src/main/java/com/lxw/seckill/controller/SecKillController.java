@@ -8,11 +8,16 @@ import com.lxw.seckill.service.IGoodsService;
 import com.lxw.seckill.service.IOrderService;
 import com.lxw.seckill.service.ISeckillOrderService;
 import com.lxw.seckill.utils.vo.GoodsVo;
+import com.lxw.seckill.utils.vo.RespBean;
 import com.lxw.seckill.utils.vo.RespBeanEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 秒杀
@@ -28,6 +33,8 @@ public class SecKillController {
     private ISeckillOrderService seckillOrderService;
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
 
     /**
@@ -37,31 +44,43 @@ public class SecKillController {
      * @param goodsId
      * @return
      */
-    @RequestMapping("/doSeckill")
-    public String doSeckill(Model model, User user, Long goodsId) {
+    @RequestMapping(value ="/doSeckill", method = RequestMethod.POST)
+    @ResponseBody
+    public RespBean doSeckill(Model model, User user, Long goodsId) {
         if (user == null) {
-            return "login";
+            return RespBean.error(RespBeanEnum.SESSION_ERROR);
         }
-        model.addAttribute("user", user);
+//        model.addAttribute("user", user);
         GoodsVo goods = goodsService.findGoodsVoByGoodsID(goodsId);
 
 
         //判断库存
         if (goods.getStockCount() < 1) {
-            model.addAttribute("errmsg", RespBeanEnum.EMPTY_STOCK.getMessage());
-            return "secKillFail";
+            return RespBean.error(RespBeanEnum.EMPTY_STOCK);
         }
         //判断是否重复抢购
-        SeckillOrder seckillOrder = seckillOrderService.getOne(new QueryWrapper<SeckillOrder>().eq("user_id", user.getId()).eq("goods_id",
+        SeckillOrder seckillOrder = seckillOrderService.getOne(new
+                QueryWrapper<SeckillOrder>().eq("user_id",
+                user.getId()).eq(
+                "goods_id",
                 goodsId));
-        if(seckillOrder != null){
-            model.addAttribute("errmsg", RespBeanEnum.REPEAT_ERROR.getMessage());
-            return"secKillFail";
+        //判断是否重复抢购
+        // SeckillOrder seckillOrder = seckillOrderService.getOne(new
+//        QueryWrapper<SeckillOrder>().eq("user_id",
+//                //       user.getId()).eq(
+//                //       "goods_id",
+//                //       goodsId));
+        String seckillOrderJson = (String)
+                redisTemplate.opsForValue().get("order:" + user.getId() + ":" + goodsId);
+        if (!StringUtils.isEmpty(seckillOrderJson)) {
+            return RespBean.error(RespBeanEnum.REPEAT_ERROR);
         }
         Order order = orderService.secKill(user, goods);
-        model.addAttribute("order", order);
-        model.addAttribute("goods", goods);
-        return"orderDetail";
+        if (null != order) {
+            return RespBean.success(order);
+        }
+        return RespBean.error(RespBeanEnum.ERROR);
+
     }
 
 }
