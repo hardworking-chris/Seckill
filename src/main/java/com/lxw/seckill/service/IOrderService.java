@@ -18,4 +18,8 @@ public interface IOrderService extends IService<Order> {
 
     Order secKill(User user, GoodsVo goodsVo);
     OrderDetailVo detail(Long orderId);
+
+    boolean checkPath(User user, Long goodsId, String path);
+
+    String createPath(User user, Long goodsId);
 }
