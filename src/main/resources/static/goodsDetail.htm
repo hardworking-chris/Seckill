@@ -139,7 +139,7 @@ id="countDown"
     function getResult(goodsId) {
         g_showLoading();
         $.ajax({
-            url: "/seckill/getResult",
+            url: "/seckill/result",
             type: "GET",
             data: {
                 goodsId: goodsId
@@ -152,7 +152,7 @@ id="countDown"
                     } else if (result == 0) {
                         setTimeout(function () {
                             getResult(goodsId)
-                        });
+                        }, 50);
                     } else {
                         layer.confirm("恭喜您，秒杀成功！查看订单？", {btn: ["确定", "取消"]},
                             function () {
