@@ -10,14 +10,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author lxw
- * @since 2022-12-05
- */
 @Getter
 @Setter
 @TableName("t_seckill_order")

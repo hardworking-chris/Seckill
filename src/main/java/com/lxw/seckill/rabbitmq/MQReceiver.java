@@ -15,10 +15,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * 消息消费者
- *
- * @author: lxw
- * @date 2022/3/7 7:44 下午
- * @ClassName: MQReceiver
  */
 @Service
 @Slf4j
@@ -34,12 +30,6 @@ public class MQReceiver {
 
     /**
      * 下单操作
-     *
-     * @param
-     * @return void
-     * @author
-     * @operation add
-     * @date
      **/
     @RabbitListener(queues = "seckillQueue")
     public void receive(String message) {

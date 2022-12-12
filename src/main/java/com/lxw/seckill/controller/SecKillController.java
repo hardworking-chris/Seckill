@@ -1,8 +1,5 @@
 package com.lxw.seckill.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.lxw.seckill.pojo.Order;
-import com.lxw.seckill.pojo.SeckillOrder;
 import com.lxw.seckill.pojo.User;
 import com.lxw.seckill.rabbitmq.MQSender;
 import com.lxw.seckill.service.IGoodsService;
@@ -58,10 +55,7 @@ public class SecKillController implements InitializingBean {
 
     /**
      * 获取秒杀结果
-     *
-     * @param user
-     * @param goodsId
-     * @return orderId:成功，-1：秒杀失败，0：排队中
+     * orderId:成功，-1：秒杀失败，0：排队中
      */
     @RequestMapping(value = "/result", method = RequestMethod.GET)
     @ResponseBody
@@ -75,10 +69,6 @@ public class SecKillController implements InitializingBean {
 
     /**
      * 获取秒杀地址
-     *
-     * @param user
-     * @param goodsId
-     * @return
      */
     @RequestMapping(value = "/path", method = RequestMethod.GET)
     @ResponseBody
@@ -94,9 +84,6 @@ public class SecKillController implements InitializingBean {
 
     /**
      * 秒杀
-     * @param user
-     * @param goodsId
-     * @return
      */
     @RequestMapping(value ="/{path}/doSeckill", method = RequestMethod.POST)
     @ResponseBody
@@ -135,8 +122,6 @@ public class SecKillController implements InitializingBean {
     }
     /**
      * 系统初始化，把商品库存数量加载到Redis
-     *
-     * @throws Exception
      */
     @Override
     public void afterPropertiesSet() throws Exception {

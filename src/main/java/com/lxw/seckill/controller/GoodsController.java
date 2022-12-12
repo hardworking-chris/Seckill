@@ -24,9 +24,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 /**
  * 商品
- *
- * @author lxw
- * @since 1.0.0
  */
 @Controller
 @RequestMapping("/goods")
@@ -68,11 +65,6 @@ public class GoodsController {
     }
     /**
      * 跳转商品详情页
-     *
-     * @param model
-     * @param user
-     * @param goodsId
-     * @return
      */
     @RequestMapping(value = "/toDetail2/{goodsId}", produces =
             "text/html;charset=utf-8")

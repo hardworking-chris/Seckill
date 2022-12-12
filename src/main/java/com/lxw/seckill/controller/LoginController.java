@@ -1,6 +1,6 @@
 package com.lxw.seckill.controller;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+
 import com.lxw.seckill.service.UserService;
 import com.lxw.seckill.utils.vo.LoginVo;
 import com.lxw.seckill.utils.vo.RespBean;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,8 +32,6 @@ public class LoginController {
 
     /**
      * 登录功能
-     * @param loginVo
-     * @return
      */
     @RequestMapping("/doLogin")
     @ResponseBody

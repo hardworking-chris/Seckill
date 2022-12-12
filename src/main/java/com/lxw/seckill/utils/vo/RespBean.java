@@ -20,7 +20,6 @@ public class RespBean {
 
     /**
      * 成功返回结果
-     * @return
      */
     public static RespBean success(){
         return new RespBean(RespBeanEnum.SUCCESS.getCode(), RespBeanEnum.SUCCESS.getMessage(), null);
@@ -32,7 +31,6 @@ public class RespBean {
 
     /**
      * 失败返回结果
-     * @return
      */
     public static RespBean error(RespBeanEnum respBeanEnum){
         return new RespBean(respBeanEnum.getCode(),respBeanEnum.getMessage(), null);

@@ -12,14 +12,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author lxw
- * @since 2022-12-05
- */
 @Getter
 @Setter
 @TableName("t_seckill_goods")

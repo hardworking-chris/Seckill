@@ -9,10 +9,7 @@ import java.net.URLEncoder;
 
 /**
  * Cookie工具类
- *
- * @author: LC
- * @date 2022/3/2 5:48 下午
- * @ClassName: CookieUtil
+ * CookieUtil
  */
 public final class CookieUtil {
 
@@ -29,10 +26,6 @@ public final class CookieUtil {
 
     /**
      * 得到Cookie的值,
-     *
-     * @param request
-     * @param cookieName
-     * @return
      */
     public static String getCookieValue(HttpServletRequest request, String cookieName, boolean isDecoder) {
         Cookie[] cookieList = request.getCookies();
@@ -59,10 +52,6 @@ public final class CookieUtil {
 
     /**
      * 得到Cookie的值,
-     *
-     * @param request
-     * @param cookieName
-     * @return
      */
     public static String getCookieValue(HttpServletRequest request, String cookieName, String encodeString) {
         Cookie[] cookieList = request.getCookies();
@@ -163,8 +152,6 @@ public final class CookieUtil {
 
     /**
      * 设置Cookie的值，并使其在指定时间内生效
-     *
-     * @param cookieMaxage cookie生效的最大秒数
      */
     private static final void doSetCookie(HttpServletRequest request, HttpServletResponse response,
                                           String cookieName, String cookieValue, int cookieMaxage, String encodeString) {

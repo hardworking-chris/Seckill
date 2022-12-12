@@ -7,10 +7,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 商品详情返回对象
- *
- * @author: lxw
- * @date
- * @ClassName: DetailVo
  */
 @Data
 @NoArgsConstructor

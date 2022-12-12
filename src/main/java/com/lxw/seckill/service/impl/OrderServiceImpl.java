@@ -31,14 +31,6 @@ import org.springframework.util.StringUtils;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-/**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author lxw
- * @since 2022-12-05
- */
 @Service
 @Transactional
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {

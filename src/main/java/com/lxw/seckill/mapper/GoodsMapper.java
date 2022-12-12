@@ -6,14 +6,6 @@ import com.lxw.seckill.utils.vo.GoodsVo;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author lxw
- * @since 2022-12-05
- */
 public interface GoodsMapper extends BaseMapper<Goods> {
 
     List<GoodsVo> findGoodsVo();

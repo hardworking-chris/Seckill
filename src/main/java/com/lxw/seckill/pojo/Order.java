@@ -13,14 +13,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author lxw
- * @since 2022-12-05
- */
 @Getter
 @Setter
 @TableName("t_order")

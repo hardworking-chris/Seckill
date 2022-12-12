@@ -9,14 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author lxw
- * @since 1.0.0
- */
 @Controller
 @RequestMapping("/order")
 public class OrderController {
@@ -24,9 +16,6 @@ public class OrderController {
     private IOrderService orderService;
     /**
      * 订单详情
-     * @param user
-     * @param orderId
-     * @return
      */
     @RequestMapping("/detail")
     @ResponseBody
